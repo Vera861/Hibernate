@@ -6,7 +6,18 @@
 
     <groupId>ru.gb</groupId>
     <artifactId>Hibernate</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <maven.compiller.sourse>11</maven.compiller.sourse>
+        <maven.compiller.target>11</maven.compiller.target>
+        <spring.version>5.3.14</spring.version>
+    </properties>
+
+
+    <modules>
+        <module>part1_lesson5</module>
+    </modules>
 
 </project>
