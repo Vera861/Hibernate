@@ -43,6 +43,15 @@ public class ProductDaoImpl implements ProductDao {
         });
     }
 
+    @Override
+    public void delete(long id) {
+        executeInTransaction(
+                em -> em.createQuery("delete from Product where id = :id")
+                        .setParameter("id", id)
+                        .executeUpdate()
+        );
+    }
+
     private <R> R executeForEntityManager(Function<EntityManager, R> function) {
         EntityManager em = emFactory.createEntityManager();
         try {
