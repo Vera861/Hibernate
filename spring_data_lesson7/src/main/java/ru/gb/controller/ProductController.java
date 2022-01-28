@@ -73,7 +73,11 @@ public class ProductController {
         return "redirect:/product";
     }
 
-    // TODO добавить удаление продукта
+    @GetMapping("/{id}/delete")
+    public String delete(@PathVariable("id") Long id) {
+        productRepository.deleteById(id);
+        return "redirect:/product";
+    }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
