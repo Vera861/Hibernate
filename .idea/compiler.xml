@@ -6,8 +6,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Hibernate" />
+        <module name="spring_data_lesson7" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="part1_lesson5" target="11" />
+      <module name="theamleaf_lesson5" target="11" />
+      <module name="thymeleaf_lesson8" target="11" />
+      <module name="thymeleaf_lesson8 (1)" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="spring_data_lesson7" options="-parameters" />
+      <module name="theamleaf_lesson5" options="-parameters" />
+      <module name="thymeleaf_lesson8" options="-parameters" />
+    </option>
   </component>
 </project>
