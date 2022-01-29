@@ -2,21 +2,21 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile name="Annotation profile for theamleaf_lesson5" enabled="true">
-        <sourceOutputDir name="../theamleaf_lesson5/target/generated-sources/annotations" />
-        <sourceTestOutputDir name="../theamleaf_lesson5/target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="thymeleaf_lesson8" />
-      </profile>
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="thymeleaf_lesson8 (1)" />
+        <module name="thymeleaf_lesson8" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Hibernate" target="1.5" />
+      <module name="Hibernate (1)" target="1.5" />
       <module name="part1_lesson5" target="11" />
+      <module name="spring_data_lesson7" target="11" />
+      <module name="spring_data_lesson7 (1)" target="11" />
+      <module name="spring_data_lesson7 (2)" target="11" />
       <module name="theamleaf_lesson5" target="11" />
     </bytecodeTargetLevel>
   </component>
