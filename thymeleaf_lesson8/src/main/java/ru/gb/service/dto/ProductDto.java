@@ -17,14 +17,21 @@ public class ProductDto {
     @PositiveOrZero
     private BigDecimal price;
 
+    private Long categoryId;
+
+    private String categoryName;
+
     public ProductDto() {
     }
 
-    public ProductDto(Long id, @NotBlank String name, @NotBlank String description, @PositiveOrZero BigDecimal price) {
+    public ProductDto(Long id, String name, String description, BigDecimal price,
+                      Long categoryId, String categoryName) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
     }
 
     public Long getId() {
@@ -57,5 +64,21 @@ public class ProductDto {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

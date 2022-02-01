@@ -1,8 +1,6 @@
 package ru.gb.persist;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 
 @Entity
@@ -13,26 +11,27 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     @Column(nullable = false)
     private String name;
 
-    @NotBlank
     @Column
     private String description;
 
-    @PositiveOrZero
     @Column
     private BigDecimal price;
+
+    @ManyToOne
+    private Category category;
 
     public Product() {
     }
 
-    public Product(Long id, String name, String description, BigDecimal price) {
+    public Product(Long id, String name, String description, BigDecimal price, Category category) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.category = category;
     }
 
     public Long getId() {
@@ -65,5 +64,13 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

@@ -1,36 +1,39 @@
 package ru.gb.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import ru.gb.persist.Product;
-import ru.gb.persist.ProductRepository;
-import ru.gb.persist.ProductSpecification;
+import ru.gb.persist.*;
 import ru.gb.service.dto.ProductDto;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
+    private final CategoryRepository categoryRepository;
+
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository) {
+    public ProductServiceImpl(ProductRepository productRepository,
+                              CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
-    public List<ProductDto> findAll(Optional<String> nameFilter) {
+    public Page<ProductDto> findAll(Optional<String> nameFilter, Integer page,
+                                    Integer size, String sort) {
         Specification<Product> spec = Specification.where(null);
         if (nameFilter.isPresent() && !nameFilter.get().isBlank()) {
             spec.and(ProductSpecification.nameLike(nameFilter.get()));
         }
-        return productRepository.findAll(spec).stream()
-                .map(ProductServiceImpl::convertToDto)
-                .collect(Collectors.toList());
+        return productRepository.findAll(spec, PageRequest.of(page, size, Sort.by(sort)))
+                .map(ProductServiceImpl::convertToDto);
     }
 
     @Override
@@ -41,20 +44,20 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto save(ProductDto productDto) {
-
+        Category category = categoryRepository.findById(productDto.getCategoryId())
+                .orElse(null);
         Product product = new Product(
                 productDto.getId(),
                 productDto.getName(),
                 productDto.getDescription(),
-                productDto.getPrice());
+                productDto.getPrice(), category);
         Product saved = productRepository.save(product);
         return convertToDto(saved);
-
     }
 
     @Override
     public void deleteById(Long id) {
-
+        productRepository.deleteById(id);
     }
 
     private static ProductDto convertToDto(Product prod) {
@@ -62,6 +65,9 @@ public class ProductServiceImpl implements ProductService {
                 prod.getId(),
                 prod.getName(),
                 prod.getDescription(),
-                prod.getPrice());
+                prod.getPrice(),
+                prod.getCategory() != null ? prod.getCategory().getId() : null,
+                prod.getCategory() != null ? prod.getCategory().getName() : null
+        );
     }
 }
