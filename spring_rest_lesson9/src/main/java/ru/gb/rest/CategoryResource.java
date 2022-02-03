@@ -1,15 +1,11 @@
 package ru.gb.rest;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.controller.NotFoundException;
 import ru.gb.persist.Category;
 import ru.gb.persist.CategoryRepository;
-import ru.gb.service.dto.ProductDto;
-
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/category")
@@ -22,17 +18,9 @@ public class CategoryResource {
     }
 
     @GetMapping
-    public List<Category> search(
-            @RequestParam("nameFilter") Optional<String> nameFilter,
-            @RequestParam("page") Optional<Integer> page,
-            @RequestParam("size") Optional<Integer> size,
-            @RequestParam("sort") Optional<String> sort) {
+    public List<Category> search() {
 
-        return categoryRepository.findAll(
-                nameFilter,
-                page.orElse(1) - 1,
-                size.orElse(5),
-                sort.filter(s -> !s.isBlank()).orElse("id"));
+        return categoryRepository.findAll();
     }
 
     @GetMapping("/{id}")
