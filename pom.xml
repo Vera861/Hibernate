@@ -6,7 +6,11 @@
 
     <groupId>ru.gb</groupId>
     <artifactId>Hibernate</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>spring_rest_lesson9</module>
+    </modules>
 
 
 </project>
