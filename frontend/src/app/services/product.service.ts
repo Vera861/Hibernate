@@ -21,4 +21,8 @@ export class ProductService {
   public save(product: Product) {
     return this.http.put('api/v1/product', product);
   }
+
+  public delete(id: number) {
+    return this.http.delete<Product>(`api/v1/product/${id}`);
+  }
 }

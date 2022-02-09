@@ -26,7 +26,12 @@ export class ProductListComponent implements OnInit {
 
   public delete(id: number | null) {
     if (id != null) {
-      // TODO
+      this.productService.delete(id).subscribe(res => {
+          console.info(res);
+          },
+        err => {
+          console.error(err);
+        });
     }
   }
 }
