@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/lesson9/lesson9.iml" filepath="$PROJECT_DIR$/lesson9/lesson9.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thymeleaf_lesson8/thymeleaf_lesson8.iml" filepath="$PROJECT_DIR$/thymeleaf_lesson8/thymeleaf_lesson8.iml" />
+    </modules>
+  </component>
+</project>
